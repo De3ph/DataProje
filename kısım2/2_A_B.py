@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt #karekök fonksiyonu
 
 class Banknot():
 
@@ -6,14 +6,15 @@ class Banknot():
     çarpıklık = None
     basıklık = None
     entropi = None
-    gerçek = None
 
+    #constructor metot
     def __init__(self ,varyans,çarpıklık,basıklık,entropi):
 
         self.varyans = varyans
         self.çarpıklık = çarpıklık
         self.basıklık = basıklık
         self.entropi = entropi
+
 
 def KNN():
     
@@ -55,9 +56,9 @@ def KNN():
 
                 isReal = data_rows[i][4]
 
-                element = tuple((d , isReal))
+                temp_tuple = tuple((d , isReal , i))
                 
-                dist_list.append(element)
+                dist_list.append(temp_tuple)
             
             dist_list.sort()
 
@@ -82,10 +83,16 @@ def KNN():
             else:
                 print("Sahte")
             
-            print(f"real {real} fake {fake}")
+            print(real , " gerçek örnek, " , fake , " sahte örnek")
 
         classification()
 
+        def print_properties():
+            for i in range(k):
+                index = dist_list[i][2]
+                print("Özellikleri : " , data_rows[index] , " uzaklığı : " ,dist_list[i][0])
+
+        print_properties()
 
     except Exception as e:
         print("Hata", " " , e)
