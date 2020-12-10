@@ -51,16 +51,14 @@ def KNN():
             for i in range(len(data_rows)):
 
                 #uzaklığı verilen formüle göre hesaplıyoruz.
-
+            
                 d = sqrt(
                     (float(data_rows[i][0]) - para.varyans)**2 + 
                     (float(data_rows[i][1]) - para.çarpıklık)**2 + 
                     (float(data_rows[i][2]) - para.basıklık)**2 + 
                     (float(data_rows[i][3]) - para.entropi)**2
                 )
-
-                d = format(d , ".4f") # noktadan sonraki 4 basamak gösterilecek şekilde sayıyı formatladık.
-
+                
                 isReal = data_rows[i][4] # verisetindeki örnek paraların türünü isReal değişkeninde depoluyoruz.
 
                 temp_tuple = tuple((d , isReal , i)) # uzaklığı , türünü , satır indexini geçici olarak bir demette depolayarak sonrasında uzaklık tutan dist_list e ekliyoruz.
@@ -90,11 +88,14 @@ def KNN():
                     fake += 1
 
             # oy çoğunluğuna göre paranın türü atanıyor  
-            if int(real) > int(fake):
+
+            if real > fake:
                 isReal = 1
-            else:
+            elif real < fake:
                 isReal = 0
-            
+            else:
+                isReal = int(dist_list[0][1])
+
             print(" ")
 
             return isReal , real , fake
@@ -191,7 +192,7 @@ def KNN():
 
 
         #-------------------------------- Program çalıştırıldı ------------------------------------#
-
+        
         varyans = float(input("varyans değeri : "))
         çarpıklık = float(input("çarpıklık değeri : "))
         basıklık = float(input("basıklık değeri : "))
@@ -206,7 +207,7 @@ def KNN():
         para = Banknot(varyans,çarpıklık,basıklık,entropi)
 
         dist_list = dist_list_maker(para , data_rows)
-
+        
         isReal , real , fake = classification(dist_list , k) 
 
         print_classification(real= real , fake= fake)
