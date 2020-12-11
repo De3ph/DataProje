@@ -20,7 +20,6 @@ def twoDVector():
 
         '''
         nx2 = [] 
-        
 
         for i in range(Nokta_sayisi):
             x_point = uniform(0,Width)
@@ -34,20 +33,22 @@ def twoDVector():
 
 
     nx2 = nokta_uret(Nokta_sayisi) # İstenilen nokta sayısı kadar nokta 2D uzayda üretilip matrise atandı.
-
-    nxn = [] # Distance matris oluşturuldu
-
-    for i in range(len(nx2)): # len fonksiyonu uzaklığı döndürüyor
-        nxn.append([]) # her ilk for döngüsünde nxn matris için satır oluşturuluyor.
-
-        for j in range(len(nx2)):
-
-            dist_list = [] # uzaklıkların tutulduğu bir liste oluşturuluyor. 
-            d = format(sqrt((nx2[i][0] - nx2[j][0])**2 + (nx2[i][1] - nx2[j][1])**2) , ".2f") # her bir noktanın diğer noktalara olan uzaklığı hesaplanıyor.
-            dist_list.append(d)
-            nxn[i].append(dist_list) # nxn matrisinin i. satırına uzaklıklar ekleniyor
-
     
+    def dist_matrices(nx2):
+        
+        nxn = [] # Distance matris oluşturuldu
+        for i in range(len(nx2)): # len fonksiyonu uzaklığı döndürüyor
+            nxn.append([]) # her ilk for döngüsünde nxn matris için satır oluşturuluyor.
+
+            for j in range(len(nx2)):
+
+                dist_list = [] # uzaklıkların tutulduğu bir liste oluşturuluyor. 
+                d = format(sqrt((nx2[i][0] - nx2[j][0])**2 + (nx2[i][1] - nx2[j][1])**2) , ".2f") # her bir noktanın diğer noktalara olan uzaklığı hesaplanıyor.
+                dist_list.append(d)
+                nxn[i].append(dist_list) # nxn matrisinin i. satırına uzaklıklar ekleniyor
+        return nxn
+
+    nxn = dist_matrices(nx2) # Distance matris oluşturuldu
 
     def print_style():
         

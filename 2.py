@@ -117,9 +117,9 @@ def KNN():
             print("-"*70)
 
             for i in range(k):
-                index = distList[i][2]
+                index = distList[i][2] #index değişkeni, yakın örneğin veri setindeki satır değişkenini tutuyor
                 print("-" * 70)
-                print(*data_rows[index] , sep=" "*8,end=" "*10)
+                print(*data_rows[index] , sep=" "*8,end=" "*10) #en başa bırakılan yıldız liste elemanı yazdırırkenki elemanın parantezlerini ve virgüllerini kaldırıyor
                 print(dist_list[i][0])
         
 
@@ -184,13 +184,12 @@ def KNN():
     
         def print_dataset():
         
-            show = input("Bellekteki veri setini görmek istiyorsanız 1'i tuşlayın :) ")
+            show = input("Bellekteki veri setini görmek istiyorsanız 1'i tuşlayın... ")
 
             if show == "1":
                 for i in data_rows:
                     print(*i)
-
-
+        
         #-------------------------------- Program çalıştırıldı ------------------------------------#
         
         varyans = float(input("varyans değeri : "))
